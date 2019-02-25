@@ -37,6 +37,7 @@ DEALINGS IN THE SOFTWARE.
 #include <ostream>
 #include <codecvt>
 #include <tuple>
+#include <locale>
 //FluoRender's special types
 #include <Types/BBox.h>
 #include <Types/Color.h>
@@ -511,7 +512,8 @@ inline bool Value::sync(Value* value)
 	return true;
 }
 
-inline std::ostream& FL::operator<<(std::ostream& os, const Value& v)
+//inline std::ostream& FL::operator<<(std::ostream& os, const Value& v)
+inline std::ostream& operator<<(std::ostream& os, const Value& v)
 {
 	if (v._type == "Referenced*")
 		os << dynamic_cast<const TemplateValue<Referenced*>*>(&v)->getValue();
