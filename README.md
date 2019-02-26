@@ -141,6 +141,7 @@ We recommend building FluoRender outside of the source tree. <br/>
       <code>Project Properties -> Manifest Tool -> Input and Output -> Enable DPI Awareness -> Yes </code> <br/>
 
 <h4>Linux (Ubuntu)</h4> 
+
 1) Make sure your enviornment is set up
   * g++ <code>sudo apt install g++</code>
   * Package Config <code>sudo apt install pkg-config</code>
