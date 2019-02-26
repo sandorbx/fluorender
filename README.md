@@ -140,6 +140,82 @@ We recommend building FluoRender outside of the source tree. <br/>
     - If you are building on Windows 8 or later, you will need to set a Visual Studio Graphics Option. This enables the application to build in higher definition.<br/>
       <code>Project Properties -> Manifest Tool -> Input and Output -> Enable DPI Awareness -> Yes </code> <br/>
 
+<h4>Linux (Ubuntu)</h4> 
+1) Make sure your enviornment is set up
+  * g++ <code>sudo apt install g++</code>
+  * Package Config <code>sudo apt install pkg-config</code>
+  * Yasm <code>sudo apt install yasm</code>
+  * git <code>sudo apt install git</code>
+  * libgtk <code>sudo apt install libgtk-3-dev</code>
+  * OpenCL <code>sudo apt install ocl-icd-libopencl1</code>
+  * OpenGL <code>sudo apt install libglu1-mesa-dev freeglut3-dev mesa-common-dev</code>
+  * libtiff <code>sudo apt install libtiff</code>
+  * libglib <code>sudo apt install libglib2.0-0</code>
+
+2) Install CMake
+  * Download the latest version of CMake from: https://cmake.org/download/ (This guide used 3.14.0-rc2)
+    - You can either use the archive manager or extract the tar.gz file yourself <br/>
+  * Go to the location of your tar file with your command line
+  * run <code>./bootstrap</code>
+  * run <code>make</code> (depending on how many cores you have on your computer, you can run make -j4, where 4 is four cores.)
+  * run <code>sudo make install</code> when make is finished.
+  * To verify installation, type <code>cmake --version</code>
+
+3) Install Boost
+  * Download the latest version of Boost from: https://www.boost.org/users/download/ (This guide used 1.69)
+    - You can either use the archive manager or extract the tar.gz file yourself <br/>
+  * Go to the location of your tar file with your command line
+  * run <code>./bootstrap.sh</code>
+  * run <code>sudo ./b2 install</code>
+
+4) Install Java
+  * Download the latest JDK from: https://www.oracle.com/technetwork/java/javase/downloads/index.html (This guide used 11.0.2 LTS)
+    - You must accept the license agreement and download the tar.gz file.<br/>
+  * Create a directory in your <code>/usr/local/</code> if you have permissions and name it <code>java</code>.
+    - <code>sudo mkdir java</code> (the path should be /usr/local/java/)<br>
+  * In your command line, navigate to the directory where you downloaded the tar file.
+  * run <code>sudo tar -zxf [name of tar file, mine was jdk-11.0.2_linux-x64_bin.tar.gz] -C /usr/local/java</code>
+  * Update the alternatives:
+    - <code>sudo update-alternatives --install /usr/bin/java java /usr/local/java/[your version of the jdk, mine was jdk-11.0.2]/bin/java 1500</code><br/>
+    - <code>sudo update-alternatives --install /usr/bin/javac javac /usr/local/java/[your version of the jdk, mine was jdk-11.0.2]/bin/javac 1500</code><br/>
+  * Set the JAVA_HOME enviornment variable
+    - run <code>sudo vim (or your preferred text editor) /etc/environment</code><br/>
+    - create a new line and type <code>JAVA_HOME="/usr/local/java/[your version of the jdk, mine was jdk-11.0.2]</code><br/>
+    - save and close the file.<br/>
+    - run <code>source /etc/enviornment</code> or reboot your system.
+    - run <code> echo $JAVA_HOME$</code> to verify your home path.
+  * To verify installation, run <code> java -version</code>
+
+5) Install CUDA
+  * This may only be necessary with NVIDIA GPU's, I am not sure of this step, I installed incase of OpenCL/GL Dependencies
+  * Download the latest version of CUDA at: https://developer.nvidia.com/cuda-downloads
+    - Select Linux<br/>
+    - Select x86_64<br/>
+    - Select Ubuntu<br/>
+    - Select Distro version<br/>
+    - Select runfile(local), note: If you wish to build this manually, you can, I found it easier to run the run file.<br/>
+  * In your command line, navigate to the download and run <code>sudo sh [your download filename]</code>
+  * Follow directions in command line and reboot computer.
+
+6) Install wxWidgets
+  * Download the latest version of wxWidgets from: https://www.wxwidgets.org/downloads/ (This guide used 3.1.2)
+    - You can either use the archive manager or extract the tar.gz file yourself <br/>
+  * In your command line, navigate to the wXWidgets folder and run:
+    - <code>./configure --prefix=/uufs/chpc.utah.edu/sys/installdir/wxWidgets/3.0.4-5.4.0g --with-libpng --with-libjpeg --with-libtiff --with-libxpm --with-libiconv --with-libnotify --with-opengl --with-regex --with-zlib --enable-cxx11 --enable-stl --enable-monolithic</code><br/>
+  * run <code>make</code> (depending on how many cores you have on your computer, you can run make -j4, where 4 is four cores.)
+  * run <code>sudo make install</code>
+  * navigate to your install, mine was located at <code>/usr/local/include</code>
+  * run <code>sudo ln -sv [your wx widgets folder, mine was wx-3.1] wx</code>
+
+7) Build the Project
+  * If everything was installed correctly this should run with no issues.
+  * clone the project from: https://github.com/SCIInstitute/fluorender.git
+  * navigate to the project folder and create a directory called build.
+  * create a new directory in <code>fluorender/ffmpeg/lib/</code> and name it Unix.
+  * extract the contents of fluoLibUnix.tar.gz into <code>fluorender/ffmpeg/lib/Unix</code>
+  * from the root of fluorender, run <code>cmake ..</code>
+  * run make
+
 Contact
 ========
 
