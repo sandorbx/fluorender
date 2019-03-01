@@ -202,7 +202,7 @@ We recommend building FluoRender outside of the source tree. <br/>
   * Download the latest version of wxWidgets from: https://www.wxwidgets.org/downloads/ (This guide used 3.1.2)
     - You can either use the archive manager or extract the tar.gz file yourself <br/>
   * In your command line, navigate to the wXWidgets folder and run:
-    - <code>./configure --prefix=/uufs/chpc.utah.edu/sys/installdir/wxWidgets/3.0.4-5.4.0g --with-libpng --with-libjpeg --with-libtiff --with-libxpm --with-libiconv --with-libnotify --with-opengl --with-regex --with-zlib --enable-cxx11 --enable-stl --enable-monolithic</code><br/>
+    - <code>./configure --with-libpng --with-libjpeg --with-libtiff --with-libxpm --with-libiconv --with-libnotify --with-opengl --with-regex --with-zlib --enable-cxx11 --enable-stl --enable-monolithic</code><br/>
   * run <code>make</code> (depending on how many cores you have on your computer, you can run make -j4, where 4 is four cores.)
   * run <code>sudo make install</code>
   * navigate to your install, mine was located at <code>/usr/local/include</code>
